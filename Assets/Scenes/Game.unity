@@ -250,17 +250,17 @@ MonoBehaviour:
   _cam: {fileID: 519420032}
   _chessPieceSprites:
   - {fileID: 21300000, guid: b37aaea542bed8048a05248a79fb2cbd, type: 3}
-  - {fileID: 21300000, guid: 683a0f76dbe992e488a81d5ea54ab64a, type: 3}
-  - {fileID: 21300000, guid: 3eb7b40f9d04e514b8a84654a6a59ba4, type: 3}
-  - {fileID: 21300000, guid: eddbc6b7d47c48a40a836815bc6592b5, type: 3}
-  - {fileID: 21300000, guid: bb19a90442005e64c8256a71aa0be21e, type: 3}
   - {fileID: 21300000, guid: dde583fd7c7ebf44399261b3e9140e3f, type: 3}
-  - {fileID: 21300000, guid: bb5b25ed44a99c448aa47b9b30d10955, type: 3}
-  - {fileID: 21300000, guid: f7157175fec2e344faddb877b75f49e8, type: 3}
-  - {fileID: 21300000, guid: 71d29cf12e0266a4c8602107417fe3c1, type: 3}
+  - {fileID: 21300000, guid: eddbc6b7d47c48a40a836815bc6592b5, type: 3}
+  - {fileID: 21300000, guid: 683a0f76dbe992e488a81d5ea54ab64a, type: 3}
+  - {fileID: 21300000, guid: bb19a90442005e64c8256a71aa0be21e, type: 3}
+  - {fileID: 21300000, guid: 3eb7b40f9d04e514b8a84654a6a59ba4, type: 3}
   - {fileID: 21300000, guid: fabb428147f999447be314a19d610c83, type: 3}
-  - {fileID: 21300000, guid: 7fcd9329e1a7c844a8ff0aa3af6c069e, type: 3}
   - {fileID: 21300000, guid: 362467c3d124c2246842f5d003586041, type: 3}
+  - {fileID: 21300000, guid: 71d29cf12e0266a4c8602107417fe3c1, type: 3}
+  - {fileID: 21300000, guid: bb5b25ed44a99c448aa47b9b30d10955, type: 3}
+  - {fileID: 21300000, guid: 7fcd9329e1a7c844a8ff0aa3af6c069e, type: 3}
+  - {fileID: 21300000, guid: f7157175fec2e344faddb877b75f49e8, type: 3}
 --- !u!4 &861868276
 Transform:
   m_ObjectHideFlags: 0
