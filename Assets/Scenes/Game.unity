@@ -247,6 +247,7 @@ MonoBehaviour:
   _width: 8
   _height: 8
   _tilePrefab: {fileID: 5707589992190942559, guid: fe7d53793a6707146ac141060ffd8bec, type: 3}
+  _cam: {fileID: 519420032}
 --- !u!4 &861868276
 Transform:
   m_ObjectHideFlags: 0
