@@ -85,10 +85,10 @@ public class GridManager : MonoBehaviour {
     }
 
      private Sprite GetChessPieceSprite(ChessPieceType type, ChessPieceColor color) {
-        int index = (int)type + ((int)color * 6); // Assuming you have 6 sprites for each piece type (e.g., pawn, rook, etc.)
+        int index = (int)type + ((int)color * 6); 
         if (index >= 0 && index < _chessPieceSprites.Length) {
             return _chessPieceSprites[index];
         }
-        return null; // Return null or a default sprite if the index is out of range
+        return null; 
     }
 }

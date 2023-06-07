@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
     public enum ChessPieceType
@@ -23,8 +21,15 @@ public class ChessPiece : MonoBehaviour
     [SerializeField] private ChessPieceType _type;
     [SerializeField] private ChessPieceColor _color;
 
-    public void Init(ChessPieceType type, ChessPieceColor color) {
+    private SpriteRenderer _spriteRenderer;
+
+    public void Init(ChessPieceType type, ChessPieceColor color)
+    {
         _type = type;
         _color = color;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Set the sorting order of the sprite renderer to ensure it is above the tiles
+        _spriteRenderer.sortingOrder = 2;
     }
 }

@@ -29,6 +29,7 @@ public class Tile : MonoBehaviour {
             chessPieceObject.transform.SetParent(transform);
             chessPieceObject.transform.localPosition = Vector3.zero;
             _chessPieceRenderer = chessPieceObject.AddComponent<SpriteRenderer>();
+            _chessPieceRenderer.sortingOrder = 1;
         }
 
         _chessPieceRenderer.sprite = chessPieceSprite;
