@@ -184,5 +184,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseColor: {r: 0.7137255, g: 0.53333336, b: 0.3764706, a: 0}
   _offsetColor: {r: 0.92156863, g: 0.9254902, b: 0.8156863, a: 0}
-  _renderer: {fileID: 0}
-  _highlight: {fileID: 0}
+  _renderer: {fileID: 3943033089441994988}
+  _highlight: {fileID: 4103416252097529638}
