@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour {
     }
  
     void OnMouseEnter() {
+        Debug.Log("Mouse enter");
         _highlight.SetActive(true);
     }
  
