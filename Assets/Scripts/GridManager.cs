@@ -44,18 +44,37 @@ public class GridManager : MonoBehaviour {
     }
 
       void PlaceInitialChessPieces() {
+        // place pawns
         for (int x = 0; x < _width; x++) {
             PlaceChessPiece(x, 1, ChessPieceType.Pawn, ChessPieceColor.Black);
             PlaceChessPiece(x, 6, ChessPieceType.Pawn, ChessPieceColor.White);
         }
 
-        // Place other pieces
+        // Placer rooks
         PlaceChessPiece(0, 0, ChessPieceType.Rook, ChessPieceColor.Black);
         PlaceChessPiece(7, 0, ChessPieceType.Rook, ChessPieceColor.Black);
-        // ... place other black pieces
         PlaceChessPiece(0, 7, ChessPieceType.Rook, ChessPieceColor.White);
         PlaceChessPiece(7, 7, ChessPieceType.Rook, ChessPieceColor.White);
-        // ... place other white pieces
+
+        // Place knights
+        PlaceChessPiece(1, 0, ChessPieceType.Knight, ChessPieceColor.Black);
+        PlaceChessPiece(6, 0, ChessPieceType.Knight, ChessPieceColor.Black);
+        PlaceChessPiece(1, 7, ChessPieceType.Knight, ChessPieceColor.White);
+        PlaceChessPiece(6, 7, ChessPieceType.Knight, ChessPieceColor.White);
+
+        // Place bishops
+        PlaceChessPiece(2, 0, ChessPieceType.Bishop, ChessPieceColor.Black);
+        PlaceChessPiece(5, 0, ChessPieceType.Bishop, ChessPieceColor.Black);
+        PlaceChessPiece(2, 7, ChessPieceType.Bishop, ChessPieceColor.White);
+        PlaceChessPiece(5, 7, ChessPieceType.Bishop, ChessPieceColor.White);
+
+        // Place queens
+        PlaceChessPiece(4, 0, ChessPieceType.Queen, ChessPieceColor.Black);
+        PlaceChessPiece(4, 7, ChessPieceType.Queen, ChessPieceColor.White);
+
+        // Place kings
+        PlaceChessPiece(3, 0, ChessPieceType.King, ChessPieceColor.Black);
+        PlaceChessPiece(3, 7, ChessPieceType.King, ChessPieceColor.White);
     }
 
     
