@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.36078432}
+  m_Color: {r: 0.7169812, g: 0.6452076, b: 0.3551086, a: 0.53333336}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5282894594445189336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
   _baseColor: {r: 0.7137255, g: 0.53333336, b: 0.3764706, a: 1}
   _offsetColor: {r: 0.92156863, g: 0.9254902, b: 0.8156863, a: 1}
   _renderer: {fileID: 3943033089441994988}
-  _highlight: {fileID: 0}
+  _highlight: {fileID: 4103416252097529638}
 --- !u!61 &3842208836665319823
 BoxCollider2D:
   m_ObjectHideFlags: 0

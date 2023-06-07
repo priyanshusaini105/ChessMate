@@ -26,6 +26,5 @@ public class ChessPiece : MonoBehaviour
     public void Init(ChessPieceType type, ChessPieceColor color) {
         _type = type;
         _color = color;
-        // Additional initialization if needed
     }
 }
