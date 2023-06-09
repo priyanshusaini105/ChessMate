@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6907827228836447477
 RectTransform:
   m_ObjectHideFlags: 0
@@ -391,6 +391,9 @@ MonoBehaviour:
   _offsetColor: {r: 0.92156863, g: 0.9254902, b: 0.8156863, a: 1}
   _renderer: {fileID: 3943033089441994988}
   _highlight: {fileID: 4103416252097529638}
+  _activeTile: {fileID: 3971562889223138758}
+  _activeSprite: {fileID: 21300000, guid: 3cd092214287d9146b7a360d9d913df7, type: 3}
+  _voidActiveSprite: {fileID: 21300000, guid: b852f82b65e4425408577b91ec373077, type: 3}
   _chessPiece: {fileID: 6396580914644306802}
 --- !u!61 &3842208836665319823
 BoxCollider2D:

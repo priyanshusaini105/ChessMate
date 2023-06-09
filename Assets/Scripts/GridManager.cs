@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private int _width, _height;
@@ -9,10 +10,12 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Transform _cam;
     [SerializeField] private Sprite[] _chessPieceSprites;
     public GameObject movePlate;
+    private Tile _currentTile;
+    private Tile _targetTile;
+
 
     private Dictionary<Vector2, Tile> _tiles;
-    private Tile _selectedTile;
-    private ChessPiece _selectedChessPiece;
+    public ChessPiece _selectedChessPiece;
 
     void Start()
     {
@@ -91,75 +94,35 @@ public class GridManager : MonoBehaviour
         tile.SetChessPieceActive(true);
     }
 
+    // move tile from current to target
+    public void MoveChessPiece(Tile targetTile)
+    {
+        if (_currentTile != null)
+        {
+            targetTile._chessPiece.PlaceChessPiece(_selectedChessPiece._type, _selectedChessPiece._color);
+            _currentTile.RemoveChessPiece();
+            _currentTile.SetActiveTheActiveTile(false);
+            _targetTile.SetActiveTheActiveTile(false);
+            _currentTile = null;
+            _targetTile = null;
+        }
+    }
+
+    // select current tile
+    public void SelectTile(Tile tile)
+    {
+        if(_currentTile == null)
+        {
+            _currentTile = tile;
+            _currentTile.SetActiveTheActiveTile(true);
+        }
+        else
+        {
+            _targetTile = tile;
+            _currentTile.SetActiveTheActiveTile(true);
+            MoveChessPiece(_targetTile);
+        }
+    }
+
     
-
-    // public void SelectTile(Tile tile)
-    // {
-    //     if (_selectedTile != null)
-    //     {
-    //         _selectedTile.ToggleHighlight(); // Deselect previous tile
-    //         _selectedTile = tile; // Select new tile
-    //         _selectedTile.ToggleHighlight();
-    //         if (_selectedChessPiece != null)
-    //         {
-    //             MoveChessPiece(tile);
-    //         }
-    //         else
-    //         {
-    //             SelectChessPiece(tile.ChessPiece);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         _selectedTile = tile;
-    //         _selectedTile.ToggleHighlight();
-    //     }
-    // }
-
-    // public void SelectChessPiece(ChessPiece chessPiece)
-    // {
-    //     if (_selectedChessPiece != null)
-    //     {
-    //         _selectedChessPiece.ToggleHighlight(false); // Deselect previous chess piece
-    //         _selectedChessPiece = chessPiece; // Select new chess piece
-    //         _selectedChessPiece.ToggleHighlight(true);
-    //     }
-    //     else
-    //     {
-    //         _selectedChessPiece = chessPiece;
-    //         _selectedChessPiece.ToggleHighlight(true);
-    //     }
-    // }
-
-    // public void MoveChessPiece(Tile targetTile)
-    // {
-    //     if (_selectedChessPiece != null)
-    //     {
-    //         Tile currentTile = _selectedChessPiece.CurrentTile;
-
-    //         // Check if the target tile is a valid move for the selected chess piece
-    //         if (IsValidMove(_selectedChessPiece, currentTile, targetTile))
-    //         {
-    //             _selectedChessPiece.MoveToTile(targetTile);
-    //             currentTile.RemoveChessPiece();
-    //             targetTile.PlaceChessPiece(_selectedChessPiece.Sprite);
-    //         }
-
-    //         // Deselect the chess piece and the tile
-    //         _selectedChessPiece.ToggleHighlight(false);
-    //         _selectedTile.ToggleHighlight();
-    //         _selectedChessPiece = null;
-    //         _selectedTile = null;
-    //     }
-    // }
-
-    // private bool IsValidMove(ChessPiece chessPiece, Tile currentTile, Tile targetTile)
-    // {
-    //     // Implement your own logic to determine if the move is valid based on the chess piece's rules
-    //     // You can access the type and color of the chess piece to determine its movement rules
-    //     // You can also check the positions of the current tile and target tile to determine the validity of the move
-
-    //     // Return true if the move is valid, otherwise return false
-    //     return true;
-    // }
 }
