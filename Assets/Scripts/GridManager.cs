@@ -122,8 +122,18 @@ public class GridManager : MonoBehaviour
             _currentTile.SetActiveTheActiveTile(true);
             bool isValid = Rules.IsLegalMove(_currentTile._chessPiece._type, _currentTile._chessPiece._color,new Vector2Int(_currentTile.x,_currentTile.y) ,new Vector2Int(_targetTile.x,_targetTile.y));
             Debug.Log(isValid);
-            if (isValid)
-            MoveChessPiece(_targetTile);
+            if (isValid){
+                // if the target tile has a chess piece of the same color, do not move
+                if (_targetTile._chessPiece.gameObject.activeSelf&&(_targetTile._chessPiece._color == _currentTile._chessPiece._color))
+                {
+                    _currentTile.SetActiveTheActiveTile(false);
+                    _targetTile.SetActiveTheActiveTile(false);
+                    _currentTile = null;
+                    _targetTile = null;
+                    return;
+                }
+                MoveChessPiece(_targetTile);
+            }
         }
     }
 
