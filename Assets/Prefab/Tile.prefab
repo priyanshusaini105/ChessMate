@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1757874111749805724}
   - component: {fileID: 4975583295731276722}
   - component: {fileID: 6396580914644306802}
+  - component: {fileID: 869428909338461967}
   m_Layer: 0
   m_Name: ChessPeice
   m_TagString: Untagged
@@ -113,6 +114,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bb19a90442005e64c8256a71aa0be21e, type: 3}
   - {fileID: 21300000, guid: 3eb7b40f9d04e514b8a84654a6a59ba4, type: 3}
   _ChessPieceSpriteRenderer: {fileID: 4975583295731276722}
+--- !u!114 &869428909338461967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452551021091594840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6013632701eafd459abca3d5d77cf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3971562889223138758
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class Tile : MonoBehaviour
     [SerializeField] private Sprite _activeSprite;
     [SerializeField] private Sprite _voidActiveSprite;
     public ChessPiece _chessPiece;
+    public int x;
+    public int y;
 
 
     // [SerializeField] private GameObject _movePlate;
@@ -20,8 +22,10 @@ public class Tile : MonoBehaviour
 
     // public ChessPiece ChessPiece => _chessPiece;
 
-    public void Init(bool isOffset)
+    public void Init(bool isOffset,int x,int y)
     {
+        this.x=x;
+        this.y=y;
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         _highlight.SetActive(false);
     }

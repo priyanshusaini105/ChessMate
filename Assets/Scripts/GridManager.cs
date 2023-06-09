@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
                 spawnedTile.name = $"Tile {x} {y}";
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-                spawnedTile.Init(isOffset);
+                spawnedTile.Init(isOffset,x,y);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
@@ -120,9 +120,12 @@ public class GridManager : MonoBehaviour
         {
             _targetTile = tile;
             _currentTile.SetActiveTheActiveTile(true);
+            bool isValid = Rules.IsLegalMove(_currentTile._chessPiece._type, _currentTile._chessPiece._color,new Vector2Int(_currentTile.x,_currentTile.y) ,new Vector2Int(_targetTile.x,_targetTile.y));
+            Debug.Log(isValid);
+            if (isValid)
             MoveChessPiece(_targetTile);
         }
     }
 
-    
+
 }
