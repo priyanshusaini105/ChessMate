@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     public ChessPiece _chessPiece;
 
-    
+
     // [SerializeField] private GameObject _movePlate;
     // private ChessPiece _chessPiece;
 
@@ -21,6 +21,12 @@ public class Tile : MonoBehaviour
     {
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         _highlight.SetActive(false);
+    }
+
+    // set active chess piece
+    public void SetChessPieceActive(bool _isActive)
+    {
+        _chessPiece.gameObject.SetActive(_isActive);
     }
 
     // private void OnMouseEnter()

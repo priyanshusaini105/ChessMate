@@ -7,7 +7,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
     [SerializeField] private Transform _cam;
-    [SerializeField] private ChessPiece[] _chessPieceSprites;
+    [SerializeField] private Sprite[] _chessPieceSprites;
     public GameObject movePlate;
 
     private Dictionary<Vector2, Tile> _tiles;
@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         GenerateGrid();
-        // PlaceInitialChessPieces();
+        PlaceInitialChessPieces();
     }
 
     void GenerateGrid()
@@ -47,58 +47,51 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-    // void PlaceInitialChessPieces()
-    // {
-    //     // place pawns
-    //     for (int x = 0; x < _width; x++)
-    //     {
-    //         PlaceChessPieceAt(x, 1, ChessPieceType.Pawn, ChessPieceColor.Black);
-    //         PlaceChessPieceAt(x, 6, ChessPieceType.Pawn, ChessPieceColor.White);
-    //     }
+    // place chess pieces initial
+    void PlaceInitialChessPieces()
+    {
+        // place pawns
+        for (int x = 0; x < _width; x++)
+        {
+            PlaceChessPieceAt(x, 1, ChessPieceType.Pawn, ChessPieceColor.Black);
+            PlaceChessPieceAt(x, 6, ChessPieceType.Pawn, ChessPieceColor.White);
+        }
 
-    //     // Place rooks
-    //     PlaceChessPieceAt(0, 0, ChessPieceType.Rook, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(7, 0, ChessPieceType.Rook, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(0, 7, ChessPieceType.Rook, ChessPieceColor.White);
-    //     PlaceChessPieceAt(7, 7, ChessPieceType.Rook, ChessPieceColor.White);
+        // Place rooks
+        PlaceChessPieceAt(0, 0, ChessPieceType.Rook, ChessPieceColor.Black);
+        PlaceChessPieceAt(7, 0, ChessPieceType.Rook, ChessPieceColor.Black);
+        PlaceChessPieceAt(0, 7, ChessPieceType.Rook, ChessPieceColor.White);
+        PlaceChessPieceAt(7, 7, ChessPieceType.Rook, ChessPieceColor.White);
 
-    //     // Place knights
-    //     PlaceChessPieceAt(1, 0, ChessPieceType.Knight, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(6, 0, ChessPieceType.Knight, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(1, 7, ChessPieceType.Knight, ChessPieceColor.White);
-    //     PlaceChessPieceAt(6, 7, ChessPieceType.Knight, ChessPieceColor.White);
+        // Place knights
+        PlaceChessPieceAt(1, 0, ChessPieceType.Knight, ChessPieceColor.Black);
+        PlaceChessPieceAt(6, 0, ChessPieceType.Knight, ChessPieceColor.Black);
+        PlaceChessPieceAt(1, 7, ChessPieceType.Knight, ChessPieceColor.White);
+        PlaceChessPieceAt(6, 7, ChessPieceType.Knight, ChessPieceColor.White);
 
-    //     // Place bishops
-    //     PlaceChessPieceAt(2, 0, ChessPieceType.Bishop, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(5, 0, ChessPieceType.Bishop, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(2, 7, ChessPieceType.Bishop, ChessPieceColor.White);
-    //     PlaceChessPieceAt(5, 7, ChessPieceType.Bishop, ChessPieceColor.White);
+        // Place bishops
+        PlaceChessPieceAt(2, 0, ChessPieceType.Bishop, ChessPieceColor.Black);
+        PlaceChessPieceAt(5, 0, ChessPieceType.Bishop, ChessPieceColor.Black);
+        PlaceChessPieceAt(2, 7, ChessPieceType.Bishop, ChessPieceColor.White);
+        PlaceChessPieceAt(5, 7, ChessPieceType.Bishop, ChessPieceColor.White);
 
-    //     // Place queens
-    //     PlaceChessPieceAt(3, 0, ChessPieceType.Queen, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(3, 7, ChessPieceType.Queen, ChessPieceColor.White);
+        // Place queens
+        PlaceChessPieceAt(3, 0, ChessPieceType.Queen, ChessPieceColor.Black);
+        PlaceChessPieceAt(3, 7, ChessPieceType.Queen, ChessPieceColor.White);
 
-    //     // Place kings
-    //     PlaceChessPieceAt(4, 0, ChessPieceType.King, ChessPieceColor.Black);
-    //     PlaceChessPieceAt(4, 7, ChessPieceType.King, ChessPieceColor.White);
-    // }
+        // Place kings
+        PlaceChessPieceAt(4, 0, ChessPieceType.King, ChessPieceColor.Black);
+        PlaceChessPieceAt(4, 7, ChessPieceType.King, ChessPieceColor.White);
+    }
 
-    // void PlaceChessPieceAt(int x, int y, ChessPieceType type, ChessPieceColor color)
-    // {
-    //     Tile tile = GetTileAtPosition(new Vector2(x, y));
-    //     Sprite chessPieceSprite = GetChessPieceSprite(type, color);
-    //     tile.PlaceChessPiece(chessPieceSprite);
-    // }
+    void PlaceChessPieceAt(int x, int y, ChessPieceType type, ChessPieceColor color)
+    {
+        Tile tile = GetTileAtPosition(new Vector2(x, y));
+        tile._chessPiece.PlaceChessPiece(type,color);
+        tile.SetChessPieceActive(true);
+    }
 
-    // private Sprite GetChessPieceSprite(ChessPieceType type, ChessPieceColor color)
-    // {
-    //     int index = (int)type + ((int)color * 6);
-    //     if (index >= 0 && index < _chessPieceSprites.Length)
-    //     {
-    //         return _chessPieceSprites[index];
-    //     }
-    //     return null;
-    // }
+    
 
     // public void SelectTile(Tile tile)
     // {
