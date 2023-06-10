@@ -43,6 +43,20 @@ public class Rules : MonoBehaviour
         return false;
     }
 
+    // legeal move for pawn to kill in cross
+    public static bool IsLegalPawnKillMove(Vector2Int startPos, Vector2Int endPos, ChessPieceColor color)
+    {
+        int direction = color == ChessPieceColor.White ? -1 : 1;
+        if (startPos.x + 1 == endPos.x || startPos.x - 1 == endPos.x)
+        {
+            if (startPos.y + direction == endPos.y)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static bool IsLegalRookMove(Vector2Int startPos, Vector2Int endPos)
     {
         if (startPos.x == endPos.x || startPos.y == endPos.y)

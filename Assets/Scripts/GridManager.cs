@@ -11,6 +11,7 @@ public class GridManager: MonoBehaviour {
     public GameObject movePlate;
     private Tile _currentTile;
     private Tile _targetTile;
+    private bool _isWhiteTurn = true;
 
     private Dictionary < Vector2, Tile > _tiles;
     public ChessPiece _selectedChessPiece;
@@ -22,6 +23,8 @@ public class GridManager: MonoBehaviour {
         .SetDimensions(400, 200)
         .SetThemeImageSet(eThemeImageSet.SciFi)
         .SetColorScheme("Blue Glow")
+        .SetTitleText("Welcome to Chess")
+        .SetContentText("This is a simple chess game made in Unity. Click OK to start the game.")
         .AddButton("OK", () => {
             Debug.Log("OK");
         });
@@ -102,37 +105,117 @@ public class GridManager: MonoBehaviour {
             _targetTile.SetActiveTheActiveTile(false);
             _currentTile = null;
             _targetTile = null;
+            _isWhiteTurn = !_isWhiteTurn;
         }
     }
 
-    // select current tile
-    public void SelectTile(Tile tile) {
-        if (_currentTile == null) {
+   // select current tile
+    public void SelectTile(Tile tile)
+    {
+
+        if (_currentTile == null)
+        {
+            if (!tile._chessPiece.gameObject.activeSelf)
+            {
+                return;
+            }
             _currentTile = tile;
             _currentTile.SetActiveTheActiveTile(true);
-        } else {
+        }
+        else
+        {
+            // do not move if others turn
+            if(_isWhiteTurn && _currentTile._chessPiece._color == ChessPieceColor.White)
+            {
+                DeselectTile();
+                log("w-Not your turn ");
+                return;
+            }
+            else if (!_isWhiteTurn && _currentTile._chessPiece._color == ChessPieceColor.Black)
+            {
+                DeselectTile();
+                log("b-Not your turn ");
+                return;
+            }
+            log("your turn ");
             _targetTile = tile;
+
+            // if target tile is the same as current tile, deselect
+            if (_currentTile == _targetTile)
+            {
+                DeselectTile();
+                return;
+            }
+
             _currentTile.SetActiveTheActiveTile(true);
             bool isValid = Rules.IsLegalMove(_currentTile._chessPiece._type, _currentTile._chessPiece._color, new Vector2Int(_currentTile.x, _currentTile.y), new Vector2Int(_targetTile.x, _targetTile.y));
             Debug.Log(isValid);
-            if (isValid) {
+            if (isValid)
+            {
                 // if the target tile has a chess piece of the same color, do not move
-                if (_targetTile._chessPiece.gameObject.activeSelf && (_targetTile._chessPiece._color == _currentTile._chessPiece._color)) {
-                    _currentTile.SetActiveTheActiveTile(false);
-                    _targetTile.SetActiveTheActiveTile(false);
-                    _currentTile = null;
-                    _targetTile = null;
+                if (_targetTile._chessPiece.gameObject.activeSelf && (_targetTile._chessPiece._color == _currentTile._chessPiece._color))
+                {
+                    DeselectTile();
                     return;
-                } else
+                }
+                else if (_targetTile._chessPiece.gameObject.activeSelf && (_targetTile._chessPiece._type == ChessPieceType.King))
+                {
                     // if the target tile has a chess piece is king so game over win opponent and display dialog
-                    if (_targetTile._chessPiece.gameObject.activeSelf && (_targetTile._chessPiece._type == ChessPieceType.King)) {
-                        MoveChessPiece(_targetTile);
-                        // display dialog
-
-                        return;
-                    }
+                    MoveChessPiece(_targetTile);
+                    // display dialog
+                    uDialog.NewDialog()
+                        .SetDimensions(400, 200)
+                        .SetThemeImageSet(eThemeImageSet.SciFi)
+                        .SetColorScheme("Blue Glow")
+                        .SetTitleText("Game Over")
+                        .AddOnCloseEvent(() =>
+                        {
+                            PlaceInitialChessPieces();
+                        })
+                        .SetContentText((_targetTile._chessPiece._color == ChessPieceColor.Black ? "Black" : "White") + " win!")
+                        .AddButton("OK", () =>
+                        {
+                            PlaceInitialChessPieces();
+                        });
+                    return;
+                }else
+                // if the target tile has any chess piece, and cureent tile is pawn and target tile is not in corner, do not move
+                 if(_currentTile._chessPiece._type == ChessPieceType.Pawn && _targetTile._chessPiece.gameObject.activeSelf){
+                    DeselectTile();
+                    return;
+                }
+                MoveChessPiece(_targetTile);
             }
-            MoveChessPiece(_targetTile);
+            else if (_currentTile._chessPiece._type == ChessPieceType.Pawn && Rules.IsLegalPawnKillMove(new Vector2Int(_currentTile.x, _currentTile.y), new Vector2Int(_targetTile.x, _targetTile.y), _currentTile._chessPiece._color))
+            {
+                // if opponent chess piece is in corner and then cross move is allowed
+                if (tile._chessPiece.gameObject.activeSelf && (_targetTile._chessPiece._color != _currentTile._chessPiece._color))
+                {
+                    MoveChessPiece(_targetTile);
+                    DeselectTile();
+                    return;
+                }
+            }
+            else
+            {
+                DeselectTile();
+                return;
+            }
         }
+    }
+
+    // do not move 
+    private void DeselectTile()
+    {
+        _currentTile.SetActiveTheActiveTile(false);
+        if(this._targetTile != null)
+        _targetTile.SetActiveTheActiveTile(false);
+        _currentTile = null;
+        _targetTile = null;
+    }
+
+    void log(string message)
+    {
+        Debug.Log(message);
     }
 }
